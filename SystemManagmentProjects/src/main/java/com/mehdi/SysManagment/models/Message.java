@@ -15,20 +15,21 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Comments {
-	
+public class Message {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
 	private String content;
 	
-	private LocalDateTime createdDateTime;
+	private LocalDateTime createdAt;
 	
 	@ManyToOne
-	private User user;
+	private Chat chat;
 	
 	@ManyToOne
-	private Issue issue;
-
+	private User sender;
+	
+	
 }
