@@ -20,6 +20,7 @@ import com.mehdi.SysManagment.repositories.UserRepository;
 import com.mehdi.SysManagment.request.LoginRequest;
 import com.mehdi.SysManagment.response.AuthResponse;
 import com.mehdi.SysManagment.sercives.CustomeUserDetailsImpl;
+import com.mehdi.SysManagment.sercives.SubscriptionService;
 
 @RestController
 @RequestMapping("/auth")
@@ -33,6 +34,9 @@ public class AuthController {
 	
 	@Autowired
 	private CustomeUserDetailsImpl customeUserDetails;
+	
+	@Autowired
+	private SubscriptionService subService;
 	
 	@PostMapping("/signup")
 	public ResponseEntity<AuthResponse> createUserHandler(@RequestBody User user) throws Exception{
@@ -50,6 +54,8 @@ public class AuthController {
 		createUser.setFullName(user.getFullName());
 		
 		User savedUser = userRepository.save(createUser);
+		
+		subService.createSub(savedUser);
 		
 		Authentication authentication = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
 		SecurityContextHolder.getContext().setAuthentication(authentication);

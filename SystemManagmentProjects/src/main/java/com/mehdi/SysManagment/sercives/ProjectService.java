@@ -2,6 +2,7 @@ package com.mehdi.SysManagment.sercives;
 
 import java.util.List;
 
+import com.mehdi.SysManagment.models.Chat;
 import com.mehdi.SysManagment.models.Project;
 import com.mehdi.SysManagment.models.User;
 
@@ -18,6 +19,12 @@ public interface ProjectService {
 	Project updateProject(Project updatedProject , Long id) throws Exception;
 	
 	void addUserToProject(Long projectId, Long userId) throws Exception;
+	
+	 void removeUserFromProject(Long projectId, Long userId) throws Exception;
+
+	Chat getChatByProjectId(Long projectId) throws Exception;
+	
+	List<Project> searchProjects(String keyword, User user) throws Exception;
 	
 	
 	

@@ -4,7 +4,7 @@ import com.mehdi.SysManagment.models.User;
 
 public interface UserService {
 	
-	User findUserProfleByJwt(String jwt) throws Exception;
+	User findUserProfleByJwt (String jwt) throws Exception;
 	
 	User findUserByEmail(String email) throws Exception;
 	
